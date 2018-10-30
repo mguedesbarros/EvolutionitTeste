@@ -1,0 +1,139 @@
+﻿@model BibliotecaWeb.Models.Usuario
+
+
+
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/sweetalert/sweetalert2.css" rel="stylesheet" />
+<script src="~/Scripts/sweetalert2.js"></script>
+<script src="~/Scripts/js/JSUsuario.js"></script>
+
+<style>
+    body {
+        background-color: #f2f2f2;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        color: #000;
+        line-height: 1;
+        padding: 5px;
+        width: 100%;
+        height: 100%;
+    }
+
+    .form-login {
+        max-width: 450px;
+        max-height: 350px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px;
+        border-radius: 10px;
+        margin-top: 10%;
+        text-align: center;
+    }
+</style>
+
+
+
+@using (Html.BeginForm("ValidaLogin", "Usuario", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken();
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="container">
+        <div class="form-login">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title" style="font-size:20px;">Login da Biblioteca</div>
+                </div>
+
+                <div style="padding-top:30px" class="panel-body">
+                    @Html.Partial("_NotificationPanel")
+                    <div style="display:none" id="result" class="alert alert-danger col-sm-12">
+
+                    </div>
+
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input type="text" class="form-control" id="Login" placeholder="Login de acesso" />
+                        @*@Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Login", autofocus = true } })
+                            @Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger", style = "margin-top:5px" })*@
+                    </div>
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input type="password" class="form-control" id="Senha" placeholder="Senha de acesso" />
+                        @*@Html.EditorFor(model => model.Senha, new { htmlAttributes = new { @class = "form-control input-lg", placeholder = "Senha" } })
+                            @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })*@
+                    </div>
+
+                    <div style="margin-top:10px;">
+                        <div class="row">
+                            <div class="col-sm-12 controls">
+                                <button type="button" class="btn btn-primary" style="width:150px!important;" id="btnLogar" onclick="return Logar();">Acessar</button>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-12 controls">
+                                <input type="submit" value="Novo Usuário" class="btn btn-primary" style="width:150px!important;" data-toggle="modal" data-target="#modal-novousuario" />
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="modal fade" id="modal-novousuario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>| <strong>Novo Usuário</strong>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="panel-body" style="padding:0px!important">
+                        <div class="modal-body" style="height:150px">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label>Usuário</label>
+                                    <input type="text" class="form-control" id="txtLogin" name="Login" placeholder="Usuário">
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label>Senha</label>
+                                    <input type="password" class="form-control" id="txtSenha" name="Senha" placeholder="Senha">
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form-group">
+                            <div class="pull-right">
+                                <button type="button" id="btnCadastrar" class="btn btn-success">Cadastrar</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+
+</script>

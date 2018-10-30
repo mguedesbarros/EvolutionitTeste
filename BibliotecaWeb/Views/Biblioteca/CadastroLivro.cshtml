@@ -1,0 +1,68 @@
+﻿@model BibliotecaWeb.Models.Livro
+
+@{
+    ViewBag.Title = "CadastroLivro";
+}
+
+<style>
+    body {
+        margin-top: 40px;
+        background-color: #f2f2f2;
+    }
+
+    .field-validation-error .text-danger {
+        margin-left: 20px;
+    }
+</style>
+
+@using (Html.BeginForm("CadastroLivro", "Biblioteca", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container" style="width:600px;">
+        <div class="panel panel-default">
+            <div class="panel-heading"><span class="glyphicon glyphicon-save" aria-hidden="true"></span>| <strong>Cadastro de Livro</strong></div>
+            <div class="panel-body">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <form role="form">
+                    <div class="form-group" style="margin-bottom:-10px;margin-left:10px">
+                        <label for="Nome">Nome</label>
+                        @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control", @maxlength = "250", style = "width:90%!important;" } })
+                        @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger", style = "margin-left:100px;" })
+                    </div>
+                    <div class="form-group" style="margin-bottom:-10px;margin-left:10px">
+                        <label for="Editora">Editora</label>
+                        @Html.EditorFor(model => model.Editora, new { htmlAttributes = new { @class = "form-control", @maxlength = "150", style = "width:90%!important;" } })
+                        @Html.ValidationMessageFor(model => model.Editora, "", new { @class = "text-danger", style = "margin-left:100px;" })
+                    </div>
+                    <div class="form-group" style="margin-bottom:-10px;margin-left:10px">
+                        <label for="Ano">Ano</label>
+                        @Html.EditorFor(model => model.Ano, new { htmlAttributes = new { @class = "form-control", style = "width:90%!important;" } })
+                        @Html.ValidationMessageFor(model => model.Ano, "", new { @class = "text-danger", style = "margin-left:100px;" })
+                    </div>
+                    <div class="form-group" style="margin-bottom:-10px;margin-left:10px">
+                        <label for="Autor">Autor</label>
+                        @Html.EditorFor(model => model.Autor, new { htmlAttributes = new { @class = "form-control", @maxlength = "150", style = "width:90%!important;" } })
+                        @Html.ValidationMessageFor(model => model.Autor, "", new { @class = "text-danger", style = "margin-left:100px;" })
+                    </div>
+                    <div class="form-group" style="margin-bottom:-10px;margin-left:10px">
+                        <label for="Descricao">Descrição</label>
+                        @Html.EditorFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control", style = "width:90%!important;", @maxlength = "500", @cols = 80, @rows = 10 } })
+                        @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger", style = "margin-left:100px;" })
+                    </div>
+                </form>
+                <hr />
+                <div class="form-group">
+                    <div class="col-md-offset-5 col-md-10">
+                        <input type="submit" value="Inserir" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script src="~/Scripts/jquery-3.0.0.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
