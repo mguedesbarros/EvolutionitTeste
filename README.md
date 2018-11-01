@@ -1,5 +1,6 @@
 # EvolutionitTeste
 
+- Extrair o Projeto na raiz do "C:/"
 - Primeiro inserir um novo usuário para logar na aplicação, clicar no botão "Novo usuário".
 - Após logado, Inserir livro(s) clicando no botão "Adicionar Livro".
 - Depois de inserir o livro, você pode "Visualizar", "Editar" ou Excluir o mesmo.
